@@ -1,29 +1,81 @@
+/* styles.module.scss */
+
 .container {
-    height: 59px;
+    height: 65px;
     background-color: #f0f2f5;
-    padding: 10px 16px;
+    padding: 0 16px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin-bottom: 5px;
-    box-shadow: 0 1px 2px #0003;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
 }
 
 .avatar {
-    width: 35px;
-    height: 35px;
+    width: 40px;
+    height: 40px;
     cursor: pointer;
     border-radius: 50%;
+    object-fit: cover;
 }
 
 .option {
     display: flex;
+    align-items: center;
     gap: 10px;
 
-    svg{
+    svg {
         width: 24px;
         height: 24px;
-        color:#54656f;
+        color: #54656f;
         cursor: pointer;
+        transition: color 0.3s;
     }
+}
+
+.moreVertWrapper {
+    position: relative;
+    padding: 2px;
+}
+
+.moreVertContent {
+    padding: 8px 0 8px 0px;
+    position: absolute;
+    top: 40px;
+    right: 0;
+    background-color: #fff;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
+    display: none;
+    z-index: 10;
+    min-width: 220px;
+    min-height: 50px;
+}
+
+.moreVertWrapper .moreVertContent {
+    display: block;
+}
+
+.moreVertContent button {
+    padding: 8px 12px;
+    display: block;
+    width: 100%;
+    text-align: left;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.moreVertContent button:hover {
+    background-color: #dddbdb;
+}
+
+.miniMenu {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    font-size: 15px;
+    font-weight: 300;
+    padding: 5px;
 }

@@ -11,7 +11,18 @@ export default function SidebarChats({ setUserChat, userChat }) {
     const refChat = db
         .collection("chats")
         .where("users", "array-contains", user.email);
+
+
     const [chatsSnapshot] = useCollection(refChat)
+
+    const handleDeleteChat = async (chatId) => {
+        try {
+            await db.collection('chats').doc(chatId).delete();
+        } catch (error) {
+            console.error('Erro ao excluir chat:', error);
+        }
+    };
+
     return (
         <div className={styles.container}>
             {chatsSnapshot?.docs.map((item, index) => (
@@ -21,7 +32,8 @@ export default function SidebarChats({ setUserChat, userChat }) {
                         users={item.data().users}
                         user={user}
                         setUserChat={setUserChat}
-                        active={userChat?.chatId === item.id ? "active" : ""}
+                        active={userChat?.chatId === item.id ? 'active' : ''}
+                        onDeleteChat={handleDeleteChat} // Passe a função de exclusão
                     />
                     <div className={styles.divider}></div>
                 </div>

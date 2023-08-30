@@ -38,3 +38,18 @@
     margin-right: 10px;
     min-width: fit-content;
 }
+
+
+.delete {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 20px ;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+        background-color: #948f8f;
+    }
+}
+

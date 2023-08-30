@@ -4,8 +4,9 @@ import * as EmailValidator from 'email-validator';
 import { auth, db } from '@/services/firebase';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useCollection } from 'react-firebase-hooks/firestore';
+import { useState } from 'react';
 
-export default function SidebarHeader({ setUserChat }) {
+export default function SidebarHeader({ setUserChat, active }) {
     const [user] = useAuthState(auth);
     const refChat = db
         .collection('chats')
@@ -35,20 +36,56 @@ export default function SidebarHeader({ setUserChat }) {
             (chat) => chat.data().users.find((user) => user === emailChat)?.length > 0
 
         );
+    }; const [showMenu, setShowMenu] = useState(false); // Estado para controlar o menu
+
+    const handleLogout = () => {
+        auth.signOut();
+        setUserChat(null);
     };
+
     return (
         <div className={styles.container}>
             <img
                 className={styles.avatar}
                 src={user?.photoURL}
-                onClick={() => [auth.signOut(), setUserChat(null)]}
-                alt="avatar" />
+                alt="avatar"
+            />
             <div className={styles.option}>
                 <MdDonutLarge />
                 <MdChat onClick={handlerCreateChat} />
-                <MdMoreVert />
+                <div className={styles.moreVertWrapper}>
+                    <MdMoreVert onClick={() => setShowMenu(!showMenu)} />
+                    {showMenu && (<div className={styles.moreVertContent}>
+                        <button>
+                            <p className={styles.miniMenu}>
+                                Novo grupo
+                            </p>
+                        </button>
+                        <button>
+                            <p className={styles.miniMenu}>
+                                Nova comunidade
+                            </p>
+                        </button>
+                        <button>
+                            <p className={styles.miniMenu}>
+                                Mensagens favoritas
+                            </p>
+                        </button>
+                        <button>
+                            <p className={styles.miniMenu}>
+                                Perfil
+                            </p>
+                        </button>
+                        <button onClick={handleLogout}>
+                            <p className={styles.miniMenu}>
+                                Desconectar
+                            </p>
+                        </button>
+
+                    </div>
+                    )}
+                </div>
             </div>
         </div>
-
     );
 }

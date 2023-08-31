@@ -1,23 +1,30 @@
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
+import * as dotenv from 'dotenv'
 
-// Configurações do Firebase
-const firebaseConfig = {
-    apiKey: "AIzaSyBRGAN3o2ptZYB2wduztrXqKztayDWS6MY",
-    authDomain: "chat-app-807b0.firebaseapp.com",
-    projectId: "chat-app-807b0",
-    storageBucket: "chat-app-807b0.appspot.com",
-    messagingSenderId: "80905669081",
-    appId: "1:80905669081:web:031338d88c3e100a1871c8"
-};
-// Inicializa o Firebase
-const app = firebase.initializeApp(firebaseConfig);
-// Exporta as funções do Firebase
-const auth = app.auth();
-// Exporta o banco de dados do Firebase
-const db = app.firestore();
-// Exporta o provedor de login do Google
-const provider = new firebase.auth.GoogleAuthProvider();
+dotenv.config(
+    )
 
-export { auth, db, provider };
+
+    
+    
+    // Configurações do Firebase
+    const firebaseConfig = {
+        apiKey: process.env.REACT_APP_API_KEY,
+        authDomain: process.env.REACT_APP_AUTH_DOMAIN,
+        projectId: process.env.REACT_APP_PROJECT_ID,
+        storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
+        messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
+        appId: process.env.REACT_APP_APP_ID
+    };
+    // Inicializa o Firebase
+    const app = firebase.initializeApp(firebaseConfig);
+    // Exporta as funções do Firebase
+    const auth = app.auth();
+    // Exporta o banco de dados do Firebase
+    const db = app.firestore();
+    // Exporta o provedor de login do Google
+    const provider = new firebase.auth.GoogleAuthProvider();
+    
+    export { auth, db, provider };

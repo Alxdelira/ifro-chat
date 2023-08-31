@@ -1,23 +1,18 @@
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
-import * as dotenv from 'dotenv'
-
-dotenv.config(
-    )
-
-
     
     
     // Configurações do Firebase
     const firebaseConfig = {
-        apiKey: process.env.REACT_APP_API_KEY,
-        authDomain: process.env.REACT_APP_AUTH_DOMAIN,
-        projectId: process.env.REACT_APP_PROJECT_ID,
-        storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
-        messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
-        appId: process.env.REACT_APP_APP_ID
-    };
+        apiKey: "AIzaSyBRGAN3o2ptZYB2wduztrXqKztayDWS6MY",
+        authDomain: "chat-app-807b0.firebaseapp.com",
+        databaseURL: "https://chat-app-807b0-default-rtdb.firebaseio.com",
+        projectId: "chat-app-807b0",
+        storageBucket: "chat-app-807b0.appspot.com",
+        messagingSenderId: "80905669081",
+        appId: "1:80905669081:web:031338d88c3e100a1871c8"
+      };
     // Inicializa o Firebase
     const app = firebase.initializeApp(firebaseConfig);
     // Exporta as funções do Firebase

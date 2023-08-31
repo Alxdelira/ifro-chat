@@ -2,9 +2,10 @@
 .container {
     display: flex;
     align-items: center;
-    justify-content: start;
+    justify-content: space-around;
     padding: 15px 20px;
     cursor: pointer;
+    width: 100%;
 
     &:hover {
         background-color: #f0f2f5;
@@ -42,14 +43,16 @@
 
 .delete {
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
     margin-left: 20px ;
     cursor: pointer;
     transition: background-color 0.3s ease;
+   
 
     &:hover {
         background-color: #948f8f;
+        
     }
 }
 

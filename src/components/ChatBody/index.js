@@ -14,15 +14,14 @@ export default function ChatBody({ chatId }) {
       .orderBy("timestamp", "asc")
   );
 
-  const refBody = useRef('');
+  const refBody = useRef(null); // Corrigido o nome da referência
 
   useEffect(() => {
-    if (refBody.current.scrollHeith > refBody.current.offsetHeigth) {
+    if (refBody.current.scrollHeight > refBody.current.offsetHeight) { // Corrigido scrollHeight e offsetHeight
       refBody.current.scrollTop =
-        refBody.current.scrollHeith - refBody.current.offsetHeigth;
+        refBody.current.scrollHeight - refBody.current.offsetHeight;
     }
   }, [messageRes]);
-
 
   return (
     <div className={styles.container} ref={refBody}>
@@ -32,12 +31,11 @@ export default function ChatBody({ chatId }) {
           user={message.data().user}
           message={{
             message: message.data().message,
-            timestamp: message.data().timestamp?.toDate().getTime()
+            timestamp: message.data().timestamp?.toDate().getTime(),
+            isCode: message.data().isCode || false, // Verifica se a mensagem é código
           }}
         />
       ))}
-
-
     </div>
   )
 }
